@@ -120,3 +120,10 @@ section{position:relative}
 .loader{width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,.2);border-top-color:var(--gold-2);animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .admin-bar{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;background:#fff;color:#111;border-radius:999px;padding:12px 18px;font-size:.85rem;box-shadow:0 6px 24px rgba(0,0,0,.4)}
+
+/* videos */
+.intro-vid{margin-top:48px;display:grid;justify-items:center;gap:14px}
+.intro-vid video{width:100%;max-width:880px;max-height:80vh;border-radius:22px;background:#000;border:1px solid var(--line);box-shadow:0 20px 60px rgba(59,130,246,.18)}
+.reels{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media (min-width:760px){.reels{grid-template-columns:repeat(4,1fr);gap:16px}}
+.reels video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:18px;background:#0E1626;border:1px solid var(--line);cursor:pointer}
