@@ -99,13 +99,17 @@
       '<section class="sec"><div class="wrap about"><div class="txt"><span class="pill">Quem somos</span>' +
       '<p class="lead">Somos uma equipe de 3 profissionais especializados em produzir conteúdo de alta qualidade.</p>' +
       "<p>Unimos fotografia, filmagem estratégica, gestão de tráfego pago e gestão de redes sociais para atrair mais clientes e aumentar o seu faturamento.</p></div>" +
-      '<div class="members">' + team + "</div></div></section>" +
+      '<div class="members">' + team + "</div></div>" +
+      '<div class="wrap intro-vid" data-vid><div class="kicker">Conheça a Elite</div>' +
+      '<video src="' + esc(C.VIDEO_APRESENTACAO || "videos/apresentacao.mp4") + '#t=0.1" controls playsinline preload="metadata"></video></div></section>' +
 
       '<section class="sec starry" style="' + fundo + '"><div class="wrap"><div class="sec-head"><span class="pill">O que oferecemos</span></div><div class="services">' + svc + "</div></div></section>" +
 
       '<section class="sec"><div class="wrap"><div class="sec-head"><span class="pill">Nosso diferencial</span></div><div class="diffs">' + diffs + "</div>" +
       '<p class="frase">' + esc(T.frase) + "</p></div></section>" +
 
+      ((T.videos || []).length ? '<section class="sec" style="padding-top:0" data-vid><div class="wrap"><div class="sec-head"><span class="pill">Trabalhos em vídeo</span></div><div class="reels">' +
+        T.videos.map(function (v) { return '<video data-src="videos/' + esc(v) + '" muted loop playsinline preload="none"></video>'; }).join("") + "</div></div></section>" : "") +
       '<section class="sec" style="padding-top:0"><div class="wrap"><div class="sec-head"><div class="kicker">' + esc(T.nome) + "</div></div>" +
       '<div class="masonry">' + T.galeria.map(function (k) { return '<img src="' + img(k) + '" alt="Trabalho da Elite Marketing Digital" loading="lazy">'; }).join("") + "</div></div></section>" +
 
@@ -122,6 +126,32 @@
       (socials ? '<div class="socials">' + socials + "</div>" : "") +
       (d.validade ? '<div class="valid">Proposta válida até ' + esc(d.validade) + "</div>" : "") +
       "</div></section>";
+    ligarVideos(el);
   };
+
+  /* Vídeos: some se o arquivo não existir; reels tocam só quando aparecem na tela. */
+  function ligarVideos(el) {
+    el.querySelectorAll("[data-vid] video").forEach(function (v) {
+      v.addEventListener("error", function () {
+        var box = v.closest(".reels") ? v : v.closest("[data-vid]");
+        if (box) box.remove();
+        el.querySelectorAll(".reels").forEach(function (r) { if (!r.querySelector("video")) { var s = r.closest("[data-vid]"); if (s) s.remove(); } });
+      });
+    });
+    var reels = el.querySelectorAll(".reels video");
+    if (!reels.length) return;
+    function carregar(v) { if (!v.src && v.dataset.src) { v.src = v.dataset.src; } }
+    if (!("IntersectionObserver" in window)) { reels.forEach(function (v) { carregar(v); v.play().catch(function () {}); }); return; }
+    var io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) { carregar(v); v.play().catch(function () {}); } else { v.pause(); }
+      });
+    }, { threshold: 0.35 });
+    reels.forEach(function (v) {
+      io.observe(v);
+      v.addEventListener("click", function () { v.muted = !v.muted; if (v.paused) v.play().catch(function () {}); });
+    });
+  }
   window.renderUtil = { esc: esc, img: img, waDigits: waDigits };
 })();
