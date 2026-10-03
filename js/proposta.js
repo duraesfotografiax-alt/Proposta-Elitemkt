@@ -1,5 +1,6 @@
 /* Página que o cliente abre: proposta.html?c=codigo-da-proposta */
 (function () {
+  var TABELA = "propostas_elite"; // tabela da Elite no Supabase
   var C = window.CONFIG, app = document.getElementById("app"), esc = window.renderUtil.esc;
   var slug = new URLSearchParams(location.search).get("c");
 
@@ -19,8 +20,8 @@
     // Vocês logados: lê direto, sem contar visualização.
     // Cliente: usa a função pública, que conta a visualização.
     var req = logado
-      ? sb.from("propostas").select("dados").eq("slug", slug).maybeSingle().then(function (x) { return { data: x.data && x.data.dados, error: x.error }; })
-      : sb.rpc("ver_proposta", { p_slug: slug });
+      ? sb.from(TABELA).select("dados").eq("slug", slug).maybeSingle().then(function (x) { return { data: x.data && x.data.dados, error: x.error }; })
+      : sb.rpc("ver_proposta_elite", { p_slug: slug });
     return req.then(function (res) {
       if (res.error) throw res.error;
       if (!res.data) { estado("Não encontramos esta proposta. Fale com a gente que enviamos uma atualizada.", true); return; }

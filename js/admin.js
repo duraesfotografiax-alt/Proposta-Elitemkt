@@ -1,5 +1,6 @@
 /* Painel da Elite: criar, editar e gerar links das propostas. */
 (function () {
+  var TABELA = "propostas_elite"; // tabela da Elite no Supabase
   var C = window.CONFIG, M = window.MODELOS, TP = window.TIPOS, app = document.getElementById("app");
   var sb = null, aba = "nova", form = null, editandoId = null, ultimo = null;
 
@@ -138,8 +139,8 @@
       dados.pacotes.forEach(function (p, i) { if (num(p.valor) > num(dados.pacotes[mi].valor)) mi = i; });
       if (dados.pacotes[mi]) dados.pacotes[mi].destaque = true;
     }
-    if (editandoId) req = sb.from("propostas").update({ dados: dados, atualizado_em: new Date().toISOString() }).eq("id", editandoId).select("slug").single();
-    else req = sb.from("propostas").insert({ slug: slugify(dados.cliente), dados: dados }).select("slug").single();
+    if (editandoId) req = sb.from(TABELA).update({ dados: dados, atualizado_em: new Date().toISOString() }).eq("id", editandoId).select("slug").single();
+    else req = sb.from(TABELA).insert({ slug: slugify(dados.cliente), dados: dados }).select("slug").single();
     req.then(function (r) {
       if (r.error) throw r.error;
       ultimo = { slug: r.data.slug, dados: dados, editada: !!editandoId }; editandoId = null; form = null;
@@ -153,7 +154,7 @@
   function telaLista() {
     var main = document.getElementById("main");
     main.innerHTML = '<input type="search" id="busca" placeholder="Buscar por nome da empresa" aria-label="Buscar por nome da empresa"><div class="list" id="lista"><p class="empty">Carregando…</p></div>';
-    sb.from("propostas").select("id,slug,dados,criado_em,atualizado_em,visualizacoes,ultima_visualizacao").order("criado_em", { ascending: false }).then(function (r) {
+    sb.from(TABELA).select("id,slug,dados,criado_em,atualizado_em,visualizacoes,ultima_visualizacao").order("criado_em", { ascending: false }).then(function (r) {
       var el = document.getElementById("lista"); if (!el) return;
       if (r.error) { el.innerHTML = '<p class="empty">Não deu para carregar a lista. Tente de novo.</p>'; return; }
       var rows = r.data || [];
@@ -182,7 +183,7 @@
         if (a === "cp") copiar(linkDe(x.slug));
         if (a === "ed") { editandoId = x.id; form = clone(x.dados); ultimo = null; trocar("nova"); }
         if (a === "rm" && confirm("Apagar a proposta de " + (x.dados.cliente || "este cliente") + "? O link para de funcionar.")) {
-          sb.from("propostas").delete().eq("id", x.id).then(function (r) {
+          sb.from(TABELA).delete().eq("id", x.id).then(function (r) {
             if (r.error) { toast("Não deu para apagar."); return; }
             rows = rows.filter(function (y) { return y.id !== x.id; }); desenhar(document.getElementById("busca").value); toast("Proposta apagada.");
           });
