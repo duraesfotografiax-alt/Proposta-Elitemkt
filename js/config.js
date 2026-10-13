@@ -23,7 +23,7 @@ window.CONFIG = {
 
   // Logos da seção "Nossos clientes" (arquivos da pasta img/clientes)
   CLIENTES: [
-    "eduardo-motors.png", "top-clean.png", "pizza-on.jpg", "acai-do-paulinho.png",
+    "omni.jpg", "eduardo-motors.png", "top-clean.png", "pizza-on.jpg", "acai-do-paulinho.png",
     "amarilis-restobar.jpg", "amarilis-pizzaria.jpg", "haru.jpg", "no-gril.png",
     "barao-express.jpg", "tratos.png", "rodrigo-moreira.png"
   ]
