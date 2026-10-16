@@ -127,3 +127,6 @@ section{position:relative}
 .reels{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 @media (min-width:760px){.reels{grid-template-columns:repeat(4,1fr);gap:16px}}
 .reels video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:18px;background:#0E1626;border:1px solid var(--line);cursor:pointer}
+
+.price .mensal{margin-top:6px;font-size:1.15rem;font-weight:700;color:var(--gold-2)}
+.price .mensal span{font-size:.8rem;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}

@@ -41,7 +41,7 @@
     var pkHtml = pks.map(function (p, i) {
       var val = String(p.valor || "").trim();
       var msg = "Olá! Vi a proposta da Elite Marketing Digital" + (cliente ? " para " + cliente : "") +
-        " e quero contratar o *" + p.nome + "*" + (val ? " de R$ " + val + (p.sufixo ? " " + p.sufixo : "") : "") + "." +
+        " e quero contratar o *" + p.nome + "*" + (val ? " de R$ " + val + (p.sufixo ? " " + p.sufixo : "") : "") + (p.mensal ? " + R$ " + p.mensal + " por mês" : "") + "." +
         "\nComo fazemos para começar?";
       return '<article class="plan' + (p.destaque ? " hl" : "") + '">' +
         (p.destaque ? '<span class="tag">Mais escolhido</span>' : "") +
@@ -51,9 +51,10 @@
           return '<div class="grp">' + (g.t ? "<b>" + esc(g.t) + "</b>" : "") + "<ul>" + g.i.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>";
         }).join("") +
         '<div class="price">' + (val ? '<div class="v"><small>R$</small>' + esc(val) + "</div>" : '<div class="v" style="font-size:1.5rem">Valor sob consulta</div>') +
-        (p.sufixo ? '<div class="s">' + esc(p.sufixo) + "</div>" : "") + "</div>" +
+        (p.sufixo ? '<div class="s">' + esc(p.sufixo) + "</div>" : "") +
+        (p.mensal ? '<div class="mensal">+ R$ ' + esc(p.mensal) + ' <span>por mês</span></div>' : "") + "</div>" +
         (p.obs ? '<p class="obs">' + esc(p.obs) + "</p>" : "") +
-        '<a class="btn' + (p.destaque ? " gold-bg" : "") + '" href="' + esc(waLink(msg)) + '" target="_blank" rel="noopener">' + (d.tipo === "personalizado" ? "Quero este serviço" : "Quero este plano") + "</a>" +
+        '<a class="btn' + (p.destaque ? " gold-bg" : "") + '" href="' + esc(waLink(msg)) + '" target="_blank" rel="noopener">' + (d.tipo === "personalizado" ? "Quero este serviço" : d.tipo === "digital" ? "Quero esta opção" : "Quero este plano") + "</a>" +
         "</div></article>";
     }).join("");
 
