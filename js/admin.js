@@ -112,12 +112,16 @@
       '<div class="row">' + campo("WhatsApp do cliente (opcional)", "clienteWhats", d.clienteWhats, "tel", "ex.: 19 99999-9999") + campo("Proposta válida até (opcional)", "validade", d.validade, "text", "ex.: 30/11/2026") + "</div>" +
       '<p class="hint">O WhatsApp do cliente não aparece na proposta; serve só para o botão "Enviar no WhatsApp".</p></section>' +
       pk + '<button class="btn" type="button" data-act="add">Adicionar ' + (d.tipo === "personalizado" ? "serviço" : "plano") + "</button>" +
-      '<section class="card"><h2>Demonstração do app</h2>' + Object.keys(window.DEMOS || {}).map(function (k) { return '<label class="chk"><input type="checkbox" data-demo="' + k + '"' + ((d.demos || []).indexOf(k) >= 0 ? " checked" : "") + ">Mostrar: " + esc(DEMOS[k].nome) + "</label>"; }).join("") + '<p class="hint">Mostra os prints do app, passo a passo, antes dos valores.</p></section>' +
+      '<section class="card"><h2>Demonstração do app</h2>' + Object.keys(window.DEMOS || {}).map(function (k) { return '<label class="chk"><input type="checkbox" data-demo="' + k + '"' + (demosDe(d).indexOf(k) >= 0 ? " checked" : "") + ">Mostrar: " + esc(DEMOS[k].nome) + "</label>"; }).join("") + '<p class="hint">Mostra os prints do app, passo a passo, antes dos valores.</p></section>' +
       '<section class="card"><h2>Observação geral</h2>' + campo("Texto que aparece abaixo dos planos", "nota", d.nota, "area") + "</section>" +
       '<div class="sticky"><button class="btn dark big" type="button" data-act="salvar">' + (editandoId ? "Salvar alterações" : "Gerar link") + "</button></div>";
   }
   function lerForm() {
-    form.demos = Array.prototype.map.call(document.querySelectorAll("#main [data-demo]:checked"), function (el) { return el.getAttribute("data-demo"); });
+    if (document.querySelector("#main [data-demo]")) {
+      form.demos = Array.prototype.map.call(document.querySelectorAll("#main [data-demo]:checked"), function (el) { return el.getAttribute("data-demo"); });
+      var cb = document.querySelector('#main [data-demo="barao"]'), nm = (document.querySelector('#main [data-k="cliente"]') || {}).value || form.cliente || "";
+      form.demoOff = !!(cb && !cb.checked && /bar[aã]o/i.test(nm));
+    }
     document.querySelectorAll("#main [data-k]").forEach(function (el) {
       var k = el.getAttribute("data-k").split("."), v = el.type === "checkbox" ? el.checked : el.value;
       if (k[0] === "pk") { if (k[2] === "itens") v = v.split("\n").map(function (s) { return s.trim(); }).filter(Boolean); form.pacotes[+k[1]][k[2]] = v; }

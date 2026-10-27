@@ -11,3 +11,8 @@ window.DEMOS = {
     ]
   }
 };
+window.demosDe = function (d) {
+  var r = (d.demos || []).slice();
+  if (!d.demoOff && /bar[aã]o/i.test(d.cliente || "") && r.indexOf("barao") < 0) r.push("barao");
+  return r;
+};

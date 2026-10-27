@@ -31,7 +31,7 @@
   };
 
   function demosHtml(d) {
-    return (d.demos || []).map(function (k) {
+    return (window.demosDe ? demosDe(d) : (d.demos || [])).map(function (k) {
       var D = (window.DEMOS || {})[k]; if (!D) return "";
       return '<section class="sec demo"><div class="wrap"><div class="sec-head"><span class="pill">' + esc(D.titulo) + "</span><p>" + esc(D.sub) + '</p></div><div class="shots">' +
         D.passos.map(function (p, i) { return '<figure class="shot"><div class="ph"><img src="img/demos/' + esc(k) + "/" + esc(p[0]) + '" alt="' + esc(p[1]) + '" loading="lazy"></div><figcaption><span>' + (i + 1) + "</span><b>" + esc(p[1]) + "</b><p>" + esc(p[2]) + "</p></figcaption></figure>"; }).join("") + "</div></div></section>";
