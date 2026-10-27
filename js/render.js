@@ -30,6 +30,13 @@
     web: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>'
   };
 
+  function demosHtml(d) {
+    return (d.demos || []).map(function (k) {
+      var D = (window.DEMOS || {})[k]; if (!D) return "";
+      return '<section class="sec demo"><div class="wrap"><div class="sec-head"><span class="pill">' + esc(D.titulo) + "</span><p>" + esc(D.sub) + '</p></div><div class="shots">' +
+        D.passos.map(function (p, i) { return '<figure class="shot"><div class="ph"><img src="img/demos/' + esc(k) + "/" + esc(p[0]) + '" alt="' + esc(p[1]) + '" loading="lazy"></div><figcaption><span>' + (i + 1) + "</span><b>" + esc(p[1]) + "</b><p>" + esc(p[2]) + "</p></figcaption></figure>"; }).join("") + "</div></div></section>";
+    }).join("");
+  }
   window.renderProposta = function (el, d) {
     var T = M[d.segmento] || M.alimentacao, K = TP[d.tipo] || TP.mensal;
     var cliente = (d.cliente || "").trim();
@@ -114,6 +121,7 @@
       '<section class="sec" style="padding-top:0"><div class="wrap"><div class="sec-head"><div class="kicker">' + esc(T.nome) + "</div></div>" +
       '<div class="masonry">' + T.galeria.map(function (k) { return '<img src="' + img(k) + '" alt="Trabalho da Elite Marketing Digital" loading="lazy">'; }).join("") + "</div></div></section>" +
 
+      demosHtml(d) +
       '<section class="sec starry" id="planos" style="' + fundo + '"><div class="wrap"><div class="sec-head"><span class="pill">' + esc(K.titulo) + "</span><p>" + esc(K.subtitulo) + "</p></div>" +
       '<div class="plans n' + Math.min(Math.max(pks.length, 1), 3) + '">' + pkHtml + "</div>" +
       (d.nota ? '<p class="pay-note">' + esc(d.nota) + "</p>" : "") + "</div></section>" +
