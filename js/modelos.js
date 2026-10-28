@@ -37,6 +37,12 @@
       subtitulo: "Um trabalho pontual, pensado sob medida para você.",
       nota: "Serviço com pagamento único. Combinamos juntos a data, o local e todos os detalhes da produção."
     },
+    renovacao: {
+      nome: "Renovação / reajuste",
+      titulo: "Renovação de contrato",
+      subtitulo: "Obrigado pela parceria. Veja as condições para continuarmos juntos no próximo período.",
+      nota: "Os valores já consideram o reajuste do período. O saldo dos anúncios continua sendo pago à parte, direto na plataforma."
+    },
     digital: {
       nome: "Sites e aplicativos",
       titulo: "Sites e aplicativos",

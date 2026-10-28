@@ -61,7 +61,7 @@
         (p.sufixo ? '<div class="s">' + esc(p.sufixo) + "</div>" : "") +
         (p.mensal ? '<div class="mensal">+ R$ ' + esc(p.mensal) + ' <span>por mês</span></div>' : "") + "</div>" +
         (p.obs ? '<p class="obs">' + esc(p.obs) + "</p>" : "") +
-        '<a class="btn' + (p.destaque ? " gold-bg" : "") + '" href="' + esc(waLink(msg)) + '" target="_blank" rel="noopener">' + (d.tipo === "personalizado" ? "Quero este serviço" : d.tipo === "digital" ? "Quero esta opção" : "Quero este plano") + "</a>" +
+        '<a class="btn' + (p.destaque ? " gold-bg" : "") + '" href="' + esc(waLink(msg)) + '" target="_blank" rel="noopener">' + (d.tipo === "personalizado" ? "Quero este serviço" : d.tipo === "digital" ? "Quero esta opção" : d.tipo === "renovacao" ? "Quero renovar" : "Quero este plano") + "</a>" +
         "</div></article>";
     }).join("");
 
