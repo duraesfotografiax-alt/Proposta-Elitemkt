@@ -54,8 +54,40 @@
       titulo: "Planos do aplicativo",
       subtitulo: "Seu app próprio, com a sua marca, sem pagar porcentagem por inscrição ou venda.",
       nota: "A implantação é paga uma vez. A assinatura cobre hospedagem, banco de dados, segurança, suporte e atualizações, com fidelidade de 12 meses. As taxas do Pix e do cartão são cobradas direto pelo banco em cada pagamento."
+    },
+    parceria: {
+      nome: "App com parceria (catálogo e ofertas)",
+      titulo: "Planos do aplicativo",
+      subtitulo: "Implantação zero para quem já é parceiro da Elite. Você escolhe quem atualiza as ofertas.",
+      nota: "Implantação zerada na condição de parceria: case em vídeo do projeto, divulgação do app no conteúdo e indicações, com fidelidade de 12 meses. Se o contrato for encerrado antes, a implantação de R$ 1.500 é cobrada de forma proporcional. A mensalidade cobre domínio, hospedagem, banco de dados, segurança, suporte e ajustes de até 2 horas por mês.",
+      comparativo: {
+        titulo: "Plataforma pronta ou app da Elite?",
+        sub: "O que muda na prática para quem vende pelo WhatsApp.",
+        colunas: ["Plataformas prontas (Goomer, Anota AI e similares)", "App da Elite"],
+        linhas: [
+          ["Mensalidade", "De R$ 59,94 a R$ 99,99", "R$ 99,90, ou R$ 199,90 com as ofertas atualizadas por nós"],
+          ["Implantação", "Zero", "Zero na parceria"],
+          ["Quem cadastra produto, foto, preço e oferta", "A sua equipe", "A Elite, no Plano Parceria, escrito no contrato"],
+          ["Fotos dos produtos", "Você manda as fotos", "Feitas pela mesma equipe que faz o seu Instagram"],
+          ["Visual e marca", "Layout da plataforma, igual ao de outras lojas", "App só seu, com a sua marca, as suas cores e o seu domínio"],
+          ["Mudanças no app", "Só o que a plataforma já oferece", "Botão, seção ou ajuste quando você pedir (até 2 horas por mês)"],
+          ["Suporte", "Chat ou central de ajuda", "Equipe que já está na sua loja para fotos e vídeos"],
+          ["Marketing", "Separado da sua agência", "Cada post, story e anúncio leva o cliente direto para o app"],
+          ["Pagamento online, cupom e relatórios", "Inclusos", "O pedido fecha no WhatsApp. Painel e relatórios no plano Completo"]
+        ]
+      }
     }
   };
+
+  /* APP COM PARCERIA (catálogo e ofertas). Edite à vontade em cada proposta. */
+  window.PACOTES_PARCERIA = [
+    { nome: "Essencial", foto: "img/demos/barao/1.jpg", valor: "0", sufixo: "implantação na parceria", mensal: "99,90", destaque: false, obs: "Quem troca preços e ofertas na planilha é a equipe da loja.",
+      itens: ["# O que está incluso", "App com a sua marca e domínio próprio", "Ofertas da semana, categorias e busca", "Pedido montado vai pronto para o WhatsApp", "Preço e oferta trocados por uma planilha simples", "Hospedagem, segurança e suporte", "Ajustes pequenos de até 2 horas por mês"] },
+    { nome: "Parceria", foto: "img/demos/barao/2.jpg", valor: "0", sufixo: "implantação na parceria", mensal: "199,90", destaque: true, obs: "Mais de 20 produtos trocados na mesma semana: combinado à parte.",
+      itens: ["# Tudo do Essencial, mais", "A Elite atualiza as ofertas toda semana (até 20 produtos)", "Fotos dos produtos novos feitas por nós", "Oferta do app igual à do jornal de ofertas e dos anúncios", "Atualização como responsabilidade da Elite, escrita no contrato"] },
+    { nome: "Completo", foto: "img/demos/barao/3.jpg", valor: "1.750", sufixo: "implantação", mensal: "249,90", destaque: false, obs: "Pode entrar depois, quando a loja quiser.",
+      itens: ["# Tudo do Parceria, mais", "Painel com login para a loja", "Pausar itens esgotados na hora", "Taxa de entrega por bairro e retirada", "Painel de pedidos em tempo real", "Controle de estoque e caixa"] }
+  ];
 
   /* APP POR ASSINATURA (ex.: inscrições de igreja, retiros e eventos). Edite à vontade em cada proposta. */
   window.PACOTES_APP = [

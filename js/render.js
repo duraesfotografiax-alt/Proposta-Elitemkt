@@ -40,6 +40,14 @@
         "</div></section>";
     }).join("");
   }
+  function comparativoHtml(K) {
+    var c = K.comparativo; if (!c) return "";
+    return '<section class="sec"><div class="wrap"><div class="sec-head"><span class="pill">' + esc(c.titulo) + "</span><p>" + esc(c.sub) + "</p></div>" +
+      '<div class="cmp"><div class="cmp-row cmp-head"><span></span><span>' + esc(c.colunas[0]) + '</span><span class="us">' + esc(c.colunas[1]) + "</span></div>" +
+      c.linhas.map(function (l) {
+        return '<div class="cmp-row"><b>' + esc(l[0]) + '</b><span data-l="' + esc(c.colunas[0]) + '">' + esc(l[1]) + '</span><span class="us" data-l="' + esc(c.colunas[1]) + '">' + esc(l[2]) + "</span></div>";
+      }).join("") + "</div></div></section>";
+  }
   function liveInit(el) {
     Array.prototype.forEach.call(el.querySelectorAll(".phone"), function (ph) {
       var fr = ph.querySelector("iframe"), go = ph.querySelector(".phone-go");
@@ -72,7 +80,7 @@
         (p.sufixo ? '<div class="s">' + esc(p.sufixo) + "</div>" : "") +
         (p.mensal ? '<div class="mensal">+ R$ ' + esc(p.mensal) + ' <span>por mês</span></div>' : "") + "</div>" +
         (p.obs ? '<p class="obs">' + esc(p.obs) + "</p>" : "") +
-        '<a class="btn' + (p.destaque ? " gold-bg" : "") + '" href="' + esc(waLink(msg)) + '" target="_blank" rel="noopener">' + (d.tipo === "personalizado" ? "Quero este serviço" : d.tipo === "digital" ? "Quero esta opção" : d.tipo === "renovacao" ? "Quero renovar" : "Quero este plano") + "</a>" +
+        '<a class="btn' + (p.destaque ? " gold-bg" : "") + '" href="' + esc(waLink(msg)) + '" target="_blank" rel="noopener">' + (d.tipo === "personalizado" ? "Quero este serviço" : d.tipo === "digital" || d.tipo === "parceria" ? "Quero esta opção" : d.tipo === "renovacao" ? "Quero renovar" : "Quero este plano") + "</a>" +
         "</div></article>";
     }).join("");
 
@@ -132,7 +140,7 @@
       '<section class="sec" style="padding-top:0"><div class="wrap"><div class="sec-head"><div class="kicker">' + esc(T.nome) + "</div></div>" +
       '<div class="masonry">' + T.galeria.map(function (k) { return '<img src="' + img(k) + '" alt="Trabalho da Elite Marketing Digital" loading="lazy">'; }).join("") + "</div></div></section>" +
 
-      demosHtml(d) +
+      demosHtml(d) + comparativoHtml(K) +
       '<section class="sec starry" id="planos" style="' + fundo + '"><div class="wrap"><div class="sec-head"><span class="pill">' + esc(K.titulo) + "</span><p>" + esc(K.subtitulo) + "</p></div>" +
       '<div class="plans n' + Math.min(Math.max(pks.length, 1), 3) + '">' + pkHtml + "</div>" +
       (d.nota ? '<p class="pay-note">' + esc(d.nota) + "</p>" : "") + "</div></section>" +
