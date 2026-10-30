@@ -16,7 +16,7 @@
     for (var i = 0; i < 6; i++) r += a[b[i] % a.length];
     return base + "-" + r;
   }
-  function pacotesPadrao(seg, tipo) { return clone(tipo === "personalizado" ? window.PACOTES_PERSONALIZADO : tipo === "digital" ? (window.DIGITAL[seg] || window.DIGITAL.comercio) : M[seg].pacotes); }
+  function pacotesPadrao(seg, tipo) { return clone(tipo === "personalizado" ? window.PACOTES_PERSONALIZADO : tipo === "app" ? window.PACOTES_APP : tipo === "digital" ? (window.DIGITAL[seg] || window.DIGITAL.comercio) : M[seg].pacotes); }
   function novaProposta(seg, tipo) {
     return { segmento: seg, tipo: tipo, cliente: "", responsavel: "", clienteWhats: "", local: "", validade: "", nota: TP[tipo].nota, pacotes: pacotesPadrao(seg, tipo) };
   }
@@ -95,7 +95,7 @@
       return '<section class="card"><div class="pk-head"><h2>' + (d.tipo === "personalizado" ? "Serviço " : "Plano ") + (i + 1) + '</h2><button class="btn small danger" type="button" data-act="rm" data-i="' + i + '">Remover</button></div>' +
         campo("Nome", "pk." + i + ".nome", p.nome) +
         '<div class="row">' + campo("Valor (R$)", "pk." + i + ".valor", p.valor, "text", "ex.: 1.498,90 (vazio = sob consulta)") + campo("Complemento do valor", "pk." + i + ".sufixo", p.sufixo, "text", "/mês ou pagamento único") + "</div>" +
-        (d.tipo === "digital" || p.mensal ? campo("Mensalidade (R$)", "pk." + i + ".mensal", p.mensal, "text", "ex.: 149,00 (vazio = sem mensalidade)") : "") +
+        (d.tipo === "digital" || d.tipo === "app" || p.mensal ? campo("Mensalidade (R$)", "pk." + i + ".mensal", p.mensal, "text", "ex.: 149,00 (vazio = sem mensalidade)") : "") +
         campo("O que está incluso (um por linha)", "pk." + i + ".itens", (p.itens || []).join("\n"), "area") +
         '<p class="hint">Dica: comece a linha com <b>#</b> para criar um título de grupo. Ex.: <b># Tráfego pago</b></p>' +
         campo("Observação (opcional)", "pk." + i + ".obs", p.obs, "area", "ex.: saldo dos anúncios por conta do contratante") +
@@ -104,7 +104,7 @@
     main.innerHTML =
       (editandoId ? '<div class="card" style="border-color:#D9A94E"><h2>Editando a proposta de ' + esc(d.cliente || "cliente") + '</h2><p class="hint">Ao salvar, o link continua o mesmo.</p></div>' : "") +
       '<section class="card"><h2>Tipo de proposta</h2>' + seg("tipo", "tipo", "data-t", Object.keys(TP), d.tipo, function (k) { return TP[k].nome; }) +
-      '<p class="hint">Planos mensais: Standard, Premium e Elite. Serviço personalizado: um vídeo, uma sessão de fotos, atualização de cardápio…</p></section>' +
+      '<p class="hint">Planos mensais: Standard, Premium e Elite. Serviço personalizado: um vídeo, uma sessão de fotos, atualização de cardápio… App por assinatura: inscrições de igreja, retiros e eventos.</p></section>' +
       '<section class="card"><h2>Segmento do cliente</h2>' + seg("seg", "seg", "data-s", Object.keys(M), d.segmento, function (k) { return M[k].nome; }) +
       '<p class="hint">Muda as fotos e a frase da proposta. ' + esc(M[d.segmento].nome) + ": " + esc(M[d.segmento].exemplo) + ".</p></section>" +
       '<section class="card"><h2>Cliente</h2>' + campo("Nome da empresa", "cliente", d.cliente, "text", "ex.: Pizzaria Bella Napoli") +
@@ -132,7 +132,7 @@
     var b = e.target.closest("[data-act]"); if (!b || aba !== "nova") return;
     var a = b.getAttribute("data-act"); lerForm();
     if (a === "tipo") { var t = b.getAttribute("data-t"); if (t !== form.tipo) { form.tipo = t; form.pacotes = pacotesPadrao(form.segmento, t); form.nota = TP[t].nota; } telaForm(); }
-    if (a === "seg") { var s = b.getAttribute("data-s"); if (s !== form.segmento) { form.segmento = s; if (form.tipo !== "personalizado") form.pacotes = pacotesPadrao(s, form.tipo); } telaForm(); }
+    if (a === "seg") { var s = b.getAttribute("data-s"); if (s !== form.segmento) { form.segmento = s; if (form.tipo !== "personalizado" && form.tipo !== "app") form.pacotes = pacotesPadrao(s, form.tipo); } telaForm(); }
     if (a === "add") { form.pacotes.push({ nome: form.tipo === "personalizado" ? "Novo serviço" : "Novo plano", itens: [], valor: "", sufixo: form.tipo === "personalizado" ? "pagamento único" : "/mês", obs: "", destaque: false }); telaForm(); }
     if (a === "rm") { if (form.pacotes.length <= 1) { toast("A proposta precisa de pelo menos um item."); return; } form.pacotes.splice(+b.getAttribute("data-i"), 1); telaForm(); }
     if (a === "salvar") salvar(b);

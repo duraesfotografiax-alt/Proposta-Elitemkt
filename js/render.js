@@ -63,7 +63,7 @@
         "\nComo fazemos para começar?";
       return '<article class="plan' + (p.destaque ? " hl" : "") + '">' +
         (p.destaque ? '<span class="tag">Mais escolhido</span>' : "") +
-        '<div class="ph"><img src="' + img(T.fotosPacotes[i % T.fotosPacotes.length]) + '" alt=""></div>' +
+        '<div class="ph"><img src="' + (p.foto ? esc(p.foto) : img(T.fotosPacotes[i % T.fotosPacotes.length])) + '" alt=""></div>' +
         '<div class="body"><h3>' + esc(p.nome) + "</h3>" +
         grupos(p.itens).map(function (g) {
           return '<div class="grp">' + (g.t ? "<b>" + esc(g.t) + "</b>" : "") + "<ul>" + g.i.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>";

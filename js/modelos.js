@@ -48,8 +48,24 @@
       titulo: "Sites e aplicativos",
       subtitulo: "Seu negócio com site próprio, pronto para vender e receber clientes dos anúncios.",
       nota: "A implantação é paga uma vez. A mensalidade cobre hospedagem, segurança, suporte e pequenas atualizações."
+    },
+    app: {
+      nome: "App por assinatura",
+      titulo: "Planos do aplicativo",
+      subtitulo: "Seu app próprio, com a sua marca, sem pagar porcentagem por inscrição ou venda.",
+      nota: "A implantação é paga uma vez. A assinatura cobre hospedagem, banco de dados, segurança, suporte e atualizações, com fidelidade de 12 meses. As taxas do Pix e do cartão são cobradas direto pelo banco em cada pagamento."
     }
   };
+
+  /* APP POR ASSINATURA (ex.: inscrições de igreja, retiros e eventos). Edite à vontade em cada proposta. */
+  window.PACOTES_APP = [
+    { nome: "Essencial", foto: "img/demos/filhosnafe/plano-1.jpg", valor: "800", sufixo: "implantação", mensal: "149", destaque: false, obs: "",
+      itens: ["# O que está incluso", "App com a marca e as cores do cliente", "1 evento ativo por vez", "Pagamento por Pix e cartão com confirmação automática", "Ingresso com QR Code", "Painel com inscritos e valores", "Suporte pelo WhatsApp"] },
+    { nome: "Completo", foto: "img/demos/filhosnafe/plano-2.jpg", valor: "1.200", sufixo: "implantação", mensal: "249", destaque: true, obs: "Retiros, congressos, cursos e cantina no mesmo app.",
+      itens: ["# Tudo do Essencial, mais", "Eventos ilimitados", "Check-in na chegada pela câmera do celular", "Lembretes automáticos no WhatsApp", "Relatórios e lista para planilha", "Ajustes mensais no app"] },
+    { nome: "Completo anual", foto: "img/demos/filhosnafe/plano-3.jpg", valor: "2.490", sufixo: "por ano, à vista", mensal: "", destaque: false, obs: "2 meses grátis em relação ao plano mensal. Implantação de R$ 1.200 cobrada uma vez.",
+      itens: ["# O que está incluso", "Tudo do plano Completo", "12 meses pagando 10", "Sem fidelidade mensal para controlar"] }
+  ];
 
   /* SITES E APLICATIVOS: valores padrão por segmento (edite à vontade em cada proposta).
      valor = implantação (pagamento único) · mensal = mensalidade */
