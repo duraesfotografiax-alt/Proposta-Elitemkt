@@ -57,6 +57,11 @@
     });
   }
   window.renderProposta = function (el, d) {
+    // Proposta de app do Barão salva antes dos planos de parceria (tipo "Sites e aplicativos"):
+    // mostra os planos novos. Depois de salva no painel como "App com parceria", valem os valores do painel.
+    if (d.tipo === "digital" && window.PACOTES_PARCERIA && (window.demosDe ? demosDe(d) : (d.demos || [])).indexOf("barao") >= 0) {
+      d = Object.assign({}, d, { tipo: "parceria", nota: TP.parceria.nota, pacotes: JSON.parse(JSON.stringify(window.PACOTES_PARCERIA)) });
+    }
     var T = M[d.segmento] || M.alimentacao, K = TP[d.tipo] || TP.mensal;
     var cliente = (d.cliente || "").trim();
     var fundo = "--fundo:url('" + img("fundo") + "')";
