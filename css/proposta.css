@@ -140,3 +140,13 @@ section{position:relative}
 .shot figcaption span{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--gold-2);color:#111;font-weight:800;margin-bottom:6px}
 .shot figcaption b{display:block;font-size:1.02rem}
 .shot figcaption p{margin:4px 0 0;color:var(--muted);font-size:.92rem}
+.live{display:grid;gap:28px;align-items:center;margin-top:40px;padding:28px 22px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(135deg,rgba(217,169,78,.08),rgba(59,130,246,.06))}
+@media(min-width:900px){.live{grid-template-columns:1fr auto;padding:40px 48px}}
+.live-txt h3{margin:8px 0 10px;font-size:1.5rem}
+.live-txt p{margin:0 0 20px;color:var(--muted);max-width:44ch}
+.phone{position:relative;width:min(100%,360px);height:min(720px,82svh);margin:0 auto;border:8px solid #1b1b1f;border-radius:34px;overflow:hidden;background:#0a0a0f;box-shadow:0 20px 60px rgba(0,0,0,.55)}
+.phone iframe{width:100%;height:100%;border:0;display:block}
+.phone-go{position:absolute;inset:0;width:100%;border:0;background:linear-gradient(180deg,rgba(5,8,15,0) 40%,rgba(5,8,15,.85));color:#fff;font:700 1rem var(--font);display:flex;align-items:flex-end;justify-content:center;padding-bottom:34px;cursor:pointer}
+.phone-go::before{content:"";position:absolute;bottom:80px;left:50%;width:46px;height:46px;margin-left:-23px;border-radius:50%;background:linear-gradient(100deg,var(--gold),var(--gold-2));box-shadow:0 0 0 10px rgba(217,169,78,.18);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 18px rgba(217,169,78,0)}}
+.phone.on .phone-go{display:none}

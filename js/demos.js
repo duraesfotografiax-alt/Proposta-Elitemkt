@@ -9,6 +9,18 @@ window.DEMOS = {
       ["3.jpg", "Categorias organizadas", "Cervejas, refrigerantes, destilados e mais, com o preço de cada item."],
       ["4.jpg", "Pedido pelo WhatsApp", "Produtos sem preço fixo viram Pôr no pedido e o cliente fecha a compra no seu Zap."]
     ]
+  },
+  filhosnafe: {
+    nome: "App de inscrições da Filhos na Fé (retiros e eventos)",
+    titulo: "Veja como o app de inscrições funciona",
+    sub: "Um exemplo feito para a Comunidade Filhos na Fé Church: inscrição da família toda, pagamento por Pix ou cartão, ingresso com QR Code e painel para a igreja.",
+    passos: [
+      ["1.jpg", "Escolha da data", "Contagem regressiva, valor do lote atual e vagas restantes em cada data."],
+      ["2.jpg", "Família inteira de uma vez", "Meia para crianças, isenção até 5 anos, responsável para menores e cupom de desconto."],
+      ["3.jpg", "Ingresso com QR Code", "Pagou no Pix ou no cartão, recebe o ingresso na hora e o comprovante no WhatsApp."],
+      ["4.jpg", "Painel da igreja", "Inscritos, valor arrecadado, ocupação, camisetas e check-in na chegada."]
+    ],
+    app: "demos/filhosnafe/index.html"
   }
 };
 window.demosDe = function (d) {
