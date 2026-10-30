@@ -63,6 +63,8 @@
     document.title = (cliente ? cliente + " | " : "") + "Proposta Elite Marketing Digital";
     var meta = [d.responsavel ? "A/C " + d.responsavel : "", d.local].filter(function (x) { return x && String(x).trim(); }).map(esc).join(" · ");
     var pks = d.pacotes || [];
+    var fotosDemo = null; // proposta com demonstração do app: os planos mostram prints do app
+    (window.demosDe ? demosDe(d) : (d.demos || [])).forEach(function (k) { var D = (window.DEMOS || {})[k]; if (!fotosDemo && D && D.fotosPlanos && d.tipo !== "mensal" && d.tipo !== "renovacao") fotosDemo = D.fotosPlanos; });
 
     var pkHtml = pks.map(function (p, i) {
       var val = String(p.valor || "").trim();
@@ -71,7 +73,7 @@
         "\nComo fazemos para começar?";
       return '<article class="plan' + (p.destaque ? " hl" : "") + '">' +
         (p.destaque ? '<span class="tag">Mais escolhido</span>' : "") +
-        '<div class="ph"><img src="' + (p.foto ? esc(p.foto) : img(T.fotosPacotes[i % T.fotosPacotes.length])) + '" alt=""></div>' +
+        '<div class="ph"><img src="' + (p.foto ? esc(p.foto) : fotosDemo ? esc(fotosDemo[i % fotosDemo.length]) : img(T.fotosPacotes[i % T.fotosPacotes.length])) + '" alt=""></div>' +
         '<div class="body"><h3>' + esc(p.nome) + "</h3>" +
         grupos(p.itens).map(function (g) {
           return '<div class="grp">' + (g.t ? "<b>" + esc(g.t) + "</b>" : "") + "<ul>" + g.i.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>";

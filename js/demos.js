@@ -8,7 +8,9 @@ window.DEMOS = {
       ["2.jpg", "Preço baixo em destaque", "Produtos em oferta com desconto, preço antigo riscado e botão Adicionar."],
       ["3.jpg", "Categorias organizadas", "Cervejas, refrigerantes, destilados e mais, com o preço de cada item."],
       ["4.jpg", "Pedido pelo WhatsApp", "Produtos sem preço fixo viram Pôr no pedido e o cliente fecha a compra no seu Zap."]
-    ]
+    ],
+    // Fotos dos planos quando esta demonstração aparece na proposta (no lugar das fotos do segmento)
+    fotosPlanos: ["img/demos/barao/plano-1.jpg", "img/demos/barao/plano-2.jpg", "img/demos/barao/plano-3.jpg"]
   },
   filhosnafe: {
     nome: "App de inscrições da Filhos na Fé (retiros e eventos)",

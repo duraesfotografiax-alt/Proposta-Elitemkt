@@ -81,11 +81,11 @@
 
   /* APP COM PARCERIA (catálogo e ofertas). Edite à vontade em cada proposta. */
   window.PACOTES_PARCERIA = [
-    { nome: "Essencial", foto: "img/demos/barao/1.jpg", valor: "0", sufixo: "implantação na parceria", mensal: "99,90", destaque: false, obs: "Quem troca preços e ofertas na planilha é a equipe da loja.",
+    { nome: "Essencial", foto: "img/demos/barao/plano-1.jpg", valor: "0", sufixo: "implantação na parceria", mensal: "99,90", destaque: false, obs: "Quem troca preços e ofertas na planilha é a equipe da loja.",
       itens: ["# O que está incluso", "App com a sua marca e domínio próprio", "Ofertas da semana, categorias e busca", "Pedido montado vai pronto para o WhatsApp", "Preço e oferta trocados por uma planilha simples", "Hospedagem, segurança e suporte", "Ajustes pequenos de até 2 horas por mês"] },
-    { nome: "Parceria", foto: "img/demos/barao/2.jpg", valor: "0", sufixo: "implantação na parceria", mensal: "199,90", destaque: true, obs: "Mais de 20 produtos trocados na mesma semana: combinado à parte.",
+    { nome: "Parceria", foto: "img/demos/barao/plano-2.jpg", valor: "0", sufixo: "implantação na parceria", mensal: "199,90", destaque: true, obs: "Mais de 20 produtos trocados na mesma semana: combinado à parte.",
       itens: ["# Tudo do Essencial, mais", "A Elite atualiza as ofertas toda semana (até 20 produtos)", "Fotos dos produtos novos feitas por nós", "Oferta do app igual à do jornal de ofertas e dos anúncios", "Atualização como responsabilidade da Elite, escrita no contrato"] },
-    { nome: "Completo", foto: "img/demos/barao/3.jpg", valor: "1.750", sufixo: "implantação", mensal: "249,90", destaque: false, obs: "Pode entrar depois, quando a loja quiser.",
+    { nome: "Completo", foto: "img/demos/barao/plano-3.jpg", valor: "1.750", sufixo: "implantação", mensal: "249,90", destaque: false, obs: "Pode entrar depois, quando a loja quiser.",
       itens: ["# Tudo do Parceria, mais", "Painel com login para a loja", "Pausar itens esgotados na hora", "Taxa de entrega por bairro e retirada", "Painel de pedidos em tempo real", "Controle de estoque e caixa"] }
   ];
 
